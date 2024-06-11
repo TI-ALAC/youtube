@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video de YouTube sin iframe</title>
+
+    <style>
+        /* CSS para el contenedor del video */
+        #video-container {
+            width: 100%;
+            max-width: 640px;
+            height: 0;
+        }
+        #video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <div id="video"></div>
+    </div>
+
+    <!-- Cargar la API de YouTube -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // Función que se llama cuando la API de YouTube está lista
+        function onYouTubeIframeAPIReady() {
+            new YT.Player('video', {
+                height: '360',
+                width: '640',
+                videoId: 'iKgvzE1R9DE', // Reemplaza VIDEO_ID con el ID del video de YouTube que quieres mostrar
+                 playerVars: {
+                    'autoplay': 1, // Habilita el autoplay
+                    'controls': 0, // Oculta los controles
+                    'mute': 1 // Muta el video
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        // Función que se llama cuando el reproductor está listo
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+    </script>
+</body>
+</html>
